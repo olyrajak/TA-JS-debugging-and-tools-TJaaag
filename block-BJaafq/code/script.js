@@ -1,26 +1,78 @@
-// #### Write your implementation of testing framework and assertion. Only after completing this go forward.
+/** 
+Testing framework- if a test fails by using the try catch method the remaining tests are not carried out. Thus, to overcome of this issue a testing framework (i.e., is a testing function) can be used.
+Assertion- it is something that is used to compare the values (which might be string, number, etc.).
+*/
 
-// #### Write two tests for the following functions using test framework assertion
-
-// #### Add two number
-
-// 1. Write a function that takes two input `numA` and `numB` and returns the sum of both numbers.
-
-// 2. After writing the function write 5 tests for above function with different values
-// 3. Throw an error when the arguments passed in not a number.
-// 4. Make first test fail and see if you get the result of second test.
-// 5. If not fix it using the test framework (try...catch) we learned in the testing framework video.
-
-
-
-function add(numA, numB) {
-
+// testing framework
+function test(message, cb) {
+    try {
+        cb();
+        console.log(message);
+    } catch (error) {
+        console.error(error);
+        console.log(message);
+    }
 }
-add(1, 2);
-// #### Multiply two numbers
 
-// 1. Write a function that takes two input `numA` and `numB` and returns the multiplication of both numbers.
-// 2. After writing the function write 5 tests for above function with different values
-// 3. Throw an error when the arguments passed in not a number.
-// 4. Make first test fail and see if you get the result of second test.
-// 5. If not fix it using the test framework (try...catch) we learned in the testing framework video.
+//assertion
+function expect(actual) {
+    return {
+        toEqual: function(expected) {
+            if (actual !== expected) {
+                throw new Error(`${actual} is not same as ${expected}`);
+            }
+        },
+    };
+}
+
+// Function for add
+function add(numA, numB) {
+    if (typeof numA !== "number" && typeof numB !== "number") {
+        console.error("Invalid Input");
+    } else {
+        return numA + numB;
+    }
+}
+
+// Function to multiply
+function multiply(numA, numB) {
+    if (typeof numA !== "number" && typeof numB !== "number") {
+        console.error("Invalid Input");
+    } else {
+        return numA * numB;
+    }
+}
+
+// Addition calls
+test("add 10+5 to be 15", () => {
+    expect(add(10, 5)).toEqual(15);
+});
+test("add 5+5 to be 10", () => {
+    expect(add(5, 5)).toEqual(20);
+});
+test("add 30+9 to be 39", () => {
+    expect(add(30, 9)).toEqual(39);
+});
+test("add 10+80 to be 90", () => {
+    expect(add(10, 80)).toEqual(90);
+});
+test("add 25+5 to be 25", () => {
+    expect(add(25, 5)).toEqual(20);
+});
+
+// Multiplication calls
+test("add 10*5 to be 50", () => {
+    expect(multiply(10, 5)).toEqual(50);
+});
+test("add 5*5 to be 25", () => {
+    expect(multiply(5, 5)).toEqual(20);
+});
+test("add 30*9 to be 270", () => {
+    expect(multiply(30, 9)).toEqual(270);
+});
+test("add 10*80 to be 800", () => {
+    expect(multiply(10, 80)).toEqual(80);
+});
+test("add 25*5 to be 125", () => {
+    expect(multiply(25, 5)).toEqual(120);
+});

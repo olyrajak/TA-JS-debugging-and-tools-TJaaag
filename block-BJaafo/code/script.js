@@ -27,7 +27,7 @@ if (getFullName("John", "Doe") !== expected) {
 getFullName("Oly", "Rajak");
 getFullName("John", "Doe");
 
-// #### Calculate total amount
+// ### Calculate total amount
 
 // 1. Write a function that takes two input `amount` and `taxRate` and returns the total amount by `amount + (amount * taxRate) `
 
